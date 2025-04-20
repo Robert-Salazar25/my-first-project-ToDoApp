@@ -42,6 +42,7 @@
         android:inputType="text"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
+        android:maxLength="20"
         app:layout_constraintTop_toBottomOf="@id/btnSelectDays"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

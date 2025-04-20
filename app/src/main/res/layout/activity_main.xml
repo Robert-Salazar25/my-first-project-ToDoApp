@@ -70,7 +70,7 @@
 
     <include
         android:id="@+id/bottomDeleteBar"
-        layout="@layout/buttom_delete_edit_bar"
+        layout="@layout/buttom_delete_bar"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

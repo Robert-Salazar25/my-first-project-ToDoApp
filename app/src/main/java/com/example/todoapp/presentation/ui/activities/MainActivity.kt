@@ -27,6 +27,9 @@ import com.example.todoapp.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import android.Manifest
 import android.os.Build
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.todoapp.R
 import com.example.todoapp.presentation.ui.adapters.TaskAdapter
 import com.example.todoapp.presentation.ui.viewModel.TaskViewModelFactory
@@ -34,6 +37,7 @@ import com.example.todoapp.TodoApp
 import com.example.todoapp.presentation.ui.viewModel.TaskViewModel
 import com.example.todoapp.domain.model.TaskEntity
 import com.example.todoapp.presentation.ui.listener.onClickListener
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 
@@ -76,41 +80,42 @@ class MainActivity : AppCompatActivity(), onClickListener {
 
 
     private fun showExampleTask() {
-
-        taskViewModel.allTaks.observe(this, {
-            tasks ->
-            if (tasks.isEmpty()){
-
-                val actualTime = getActualTime()
-                val task = TaskEntity(id = -1L ,tarea = "Añade una tarea!", hora = actualTime,
-                    diasSemana = "LUN", esRecurrente = false)
-                taskViewModel.addTask(task)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                taskViewModel.allTaks.collect { tasks ->
+                    if (tasks.isEmpty()) {
+                        val actualTime = getActualTime()
+                        val task = TaskEntity(
+                            id = -1L,
+                            tarea = "Añade una tarea!",
+                            hora = actualTime,
+                            diasSemana = "LUN",
+                            esRecurrente = false
+                        )
+                        taskViewModel.addTask(task)
+                    }
+                }
             }
-
-        })
+        }
     }
 
     private fun getActualTime(): String{
         val calendar = Calendar.getInstance()
-        val formato = SimpleDateFormat("HH:mm", Locale.getDefault())
-        return formato.format(calendar.time)
-
-    }
-
-    private fun getActualDate(): String{
-        val calendar = Calendar.getInstance()
-        val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        return formato.format(calendar.time)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        return String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
 
     }
 
 
     private fun observeTasks() {
-        taskViewModel.allTaks.observe(this, Observer { task ->
-            task?.let {
-                taskAdapter.update(task)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                taskViewModel.allTaks.collect { tasks ->
+                    taskAdapter.update(tasks)
+                }
             }
-        })
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -232,7 +237,7 @@ class MainActivity : AppCompatActivity(), onClickListener {
             val timePickerDialog = TimePickerDialog(this,
                 R.style.CustomTimePickerDialogTheme,
                 {_, hourOfDay, minuteSelected ->
-                    selectTime = "$hourOfDay:$minuteSelected"
+                    selectTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minuteSelected)
                     btnSelectTime.text = selectTime
                 },
                 hour,
@@ -250,30 +255,44 @@ class MainActivity : AppCompatActivity(), onClickListener {
 
                 val timeParts = selectTime.split(":")
                 val hour = timeParts[0].toInt()
-                val minute = timeParts.getOrElse(1) { "0" }.toInt()
+                val minute = timeParts[1].toInt()
 
-                val calendarNow = Calendar.getInstance()
-                val calendarTask = Calendar.getInstance().apply {
-                    set(Calendar.HOUR_OF_DAY, hour)
-                    set(Calendar.MINUTE, minute)
-                    set(Calendar.SECOND, 0)
+                val hasFutureNotification = selectedDays.any { dia ->
+                    val dayOfWeek = when(dia) {
+                        "LUN" -> Calendar.MONDAY
+                        "MAR" -> java.util.Calendar.TUESDAY
+                        "MIE" -> java.util.Calendar.WEDNESDAY
+                        "JUE" -> java.util.Calendar.THURSDAY
+                        "VIE" -> java.util.Calendar.FRIDAY
+                        "SAB" -> java.util.Calendar.SATURDAY
+                        "DOM" -> java.util.Calendar.SUNDAY
+                        else -> return@any false
+                    }
+
+                    Calendar.getInstance().apply {
+                        set(Calendar.DAY_OF_WEEK, dayOfWeek)
+                        set(Calendar.HOUR_OF_DAY, hour)
+                        set(Calendar.MINUTE, minute)
+                        set(Calendar.SECOND, 0)
+                    }.timeInMillis > System.currentTimeMillis()
                 }
 
-                if (calendarTask.timeInMillis > calendarNow.timeInMillis + 60000){
-
+                if (hasFutureNotification || isRecurrente) {
                     val newTask = TaskEntity(
                         tarea = taskName,
                         hora = selectTime,
                         diasSemana = selectedDays.joinToString(","),
                         esRecurrente = isRecurrente
-
                     )
                     taskViewModel.addTask(newTask)
                     dialog.dismiss()
                     Toast.makeText(this, getString(R.string.add_task_secces), Toast.LENGTH_SHORT)
                         .show()
-                }else{
-                    Toast.makeText(this, "Por favor, selecciona una hora futura", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(
+                        this, "La hora debe ser futura para al menos un día seleccionado",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }else{
                 Toast.makeText(this, getString(R.string.parameters_empty), Toast.LENGTH_SHORT)
@@ -357,7 +376,7 @@ class MainActivity : AppCompatActivity(), onClickListener {
             val timePickerDialog = TimePickerDialog(this,
                 R.style.CustomTimePickerDialogTheme,
                 {_, hourOfDay, minuteSelected ->
-                    selectedTime = "$hourOfDay:$minuteSelected"
+                    selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minuteSelected)
                     btnSelectTime.text = selectedTime
                 },
                 hour,

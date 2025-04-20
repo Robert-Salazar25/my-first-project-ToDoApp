@@ -7,12 +7,13 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.todoapp.domain.model.TaskEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
 
     @Query("SELECT * FROM TaskEntity")
-    fun getAllTasks(): LiveData<List<TaskEntity>>
+    fun getAllTasks(): Flow<List<TaskEntity>>
 
     @Query("SELECT * FROM TaskEntity where id = :id")
      fun getTaskbyId(id: Long): LiveData<TaskEntity>
@@ -28,6 +29,9 @@ interface TaskDao {
 
     @Query("UPDATE TaskEntity SET notas = :notas WHERE id = :taskId")
     suspend fun updateNotas(taskId: Long, notas: String)
+
+    @Query("SELECT * FROM TaskEntity ORDER BY hora ASC")
+    suspend fun getAllTaskForWidget(): List<TaskEntity>
 
 
 

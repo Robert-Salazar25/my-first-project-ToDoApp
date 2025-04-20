@@ -3,6 +3,8 @@ package com.example.todoapp.presentation.ui.viewModel
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -13,18 +15,21 @@ import androidx.lifecycle.viewModelScope
 import com.example.todoapp.presentation.ui.receivers.TaskNotificationReceiver
 import com.example.todoapp.domain.repository.TaskRepository
 import com.example.todoapp.domain.model.TaskEntity
+import com.example.todoapp.presentation.ui.widget.TaskWidget
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class TaskViewModel (private val taskRepository: TaskRepository,
                      private val applicationContext : Context): ViewModel() {
 
-    val allTaks: LiveData<List<TaskEntity>> = taskRepository.allTasks
+    val allTaks: Flow<List<TaskEntity>> = taskRepository.allTasks
 
     fun addTask(taskEntity: TaskEntity) = viewModelScope.launch {
         val taskId = taskRepository.addTask(taskEntity)
         taskEntity.id = taskId
         scheduleTaskNotification(applicationContext, taskEntity.copy(id = taskId))
+
     }
 
      fun getTaskbyId(id: Long): LiveData<TaskEntity> {
@@ -79,8 +84,13 @@ class TaskViewModel (private val taskRepository: TaskRepository,
                 set(Calendar.SECOND, 0)
                 set(Calendar.MILLISECOND, 0)
 
-                if (timeInMillis <= System.currentTimeMillis() && taskEntity.esRecurrente){
-                    add(Calendar.DAY_OF_YEAR, 7)
+                if (timeInMillis <= System.currentTimeMillis()) {
+                    if (taskEntity.esRecurrente) {
+                        add(Calendar.DAY_OF_YEAR, 7) // Programar para la próxima semana si es recurrente
+                    } else {
+                        Log.d("Notification", "No se programa notificación para hora pasada")
+                        return@forEach // Salir sin programar si no es recurrente
+                    }
                 }
             }
 

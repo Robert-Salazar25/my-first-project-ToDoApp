@@ -22,9 +22,6 @@ class TaskAdapter (private val listTask: MutableList<TaskEntity>, private val li
 
         private var cardBackground = Color.parseColor("#2f2f2f")
     private var selectedCardBackground = Color.parseColor("#D5B30E")
-    private var actualStroke = Color.parseColor("#FF000000")
-    private var selectedStroke = Color.parseColor("#D5B30E")
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
@@ -42,7 +39,6 @@ class TaskAdapter (private val listTask: MutableList<TaskEntity>, private val li
             setListener(task)
             binding.tvTarea.text = task.tarea
             binding.tvHora.text = task.hora
-
             binding.tvDias.text = formatDias(task.diasSemana, task.esRecurrente)
 
             binding.root.isSelected = taskSelected.contains(task)

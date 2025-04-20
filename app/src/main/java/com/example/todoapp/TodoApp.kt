@@ -8,6 +8,6 @@ class TodoApp: Application() {
 
     val taskRepository: TaskRepository by lazy {
         val database = TaskDatabase.getDatabase(this)
-        TaskRepository(database.TaskDao())
+        TaskRepository(database.TaskDao(), applicationContext)
     }
 }
