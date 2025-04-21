@@ -5,10 +5,15 @@ Una aplicación de productividad con recordatorios inteligentes, notificaciones 
 
 🚀 Características Principales
 ✔ Notificaciones inteligentes basadas en días/horas específicos
+
 ✔ Selección flexible de días recurrentes (Lun-Vie, días alternos, etc.)
+
 ✔ Modo selección múltiple para operaciones por lotes
+
 ✔ Integración con widgets para vista rápida desde la pantalla de inicio
+
 ✔ Persistencia de datos con Room Database
+
 ✔ UI moderna con Material Design 3
 
 🛠 Tecnologías Clave
