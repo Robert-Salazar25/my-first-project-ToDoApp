@@ -1,57 +1,59 @@
-Desarrollador: [Robert Salazar]
-📱 Plataforma: Android (Kotlin) | ⏳ Estado: Beta
 
-Una aplicación de productividad con recordatorios inteligentes, notificaciones programadas y gestión de tareas recurrente, diseñada con arquitectura MVVM y buenas prácticas de desarrollo.
+**Developer:** [Robert Salazar] 📱 
+**Platform:** Android (Kotlin) | ⏳ 
+**Status:** Beta  
 
-🚀 Características Principales
+A productivity app with smart reminders, scheduled notifications, and recurring task management, designed with MVVM architecture and development best practices.  
 
-✔ Notificaciones inteligentes basadas en días/horas específicos
+### 🚀 Key Features 
 
-✔ Selección flexible de días recurrentes (Lun-Vie, días alternos, etc.)
+✔ Smart notifications based on specific days/times
 
-✔ Modo selección múltiple para operaciones por lotes
+✔ Flexible recurring day selection (Mon-Fri, alternate days, etc.) 
 
-✔ Integración con widgets para vista rápida desde la pantalla de inicio
+✔ Multi-select mode for batch operations  
 
-✔ Persistencia de datos con Room Database
+✔ Widget integration for quick access from the home screen  
 
-✔ UI moderna con Material Design 3
+✔ Data persistence with Room Database
 
-🛠 Tecnologías Clave
-- Lenguaje: Kotlin
-- Arquitectura: MVVM + Clean Architecture
-- Base de datos: Room + Flow
-- Notificaciones: AlarmManager + BroadcastReceiver
-- Inyección de dependencias: Manual (sin frameworks)
-- Widgets: AppWidgetProvider + RemoteViews
+✔ Modern UI with Material Design 3  
 
-🎯 ¿Por qué este proyecto destaca en mi portfolio?
+### 🛠 Key Technologies  
 
-1. Técnicas avanzadas:
+- **Language:** Kotlin
+- **Architecture:** MVVM + Clean Architecture
+- **Database:** Room + Flow
+- **Notifications:** AlarmManager + BroadcastReceiver
+- **Dependency Injection:** Manual (no frameworks)
+- **Widgets:** AppWidgetProvider + RemoteViews  
 
-- Programación exacta de alarmas con AlarmManager
-- Widget interactivo con actualización en tiempo real
-- Patrón Repository para abstracción de datos
+### 🎯 Why This Project Stands Out in My Portfolio  
 
-2. Buenas prácticas:
+**Advanced Techniques:** 
 
-- Código modularizado y testeable
-- Manejo correcto de permisos (Android 13+)
-- Optimización de batería (alarmas eficientes)
+- Precise alarm scheduling with AlarmManager  
+- Interactive widget with real-time updates  
+- Repository pattern for data abstraction  
 
-📌 Cómo este proyecto demuestra mis habilidades
+**Best Practices:**  
 
-- Habilidad técnica: Uso avanzado de componentes de Android (Room, AlarmManager, BroadcastReceiver).
-- UX/UI: Diseño intuitivo siguiendo Material Design.
-- Resolución de problemas: Implementación de notificaciones exactas sin drain de batería.
-- Documentación: Código bien comentado y README profesional.
+- Modularized and testable code  
+- Proper permission handling (Android 13+)  
+- Battery optimization (efficient alarms)  
 
-📌 Cómo contribuir
-¿Encontraste un bug o tienes una mejora? ¡Abre un issue o envía un PR!
+### 📌 How This Project Demonstrates My Skills  
 
-📞 Contacto
+- **Technical Skill:** Advanced use of Android components (Room, AlarmManager, BroadcastReceiver).
+- **UX/UI:** Intuitive design following Material Design.
+- **Problem-Solving:** Implementation of exact notifications without battery drain.
+- **Documentation:** Well-commented code and professional README.  
 
-💼 LinkedIn: https://www.linkedin.com/in/robert-salazar-630250360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
+### 📌 How to Contribute  
+Found a bug or have an improvement? Open an issue or submit a PR!  
 
-📧 Email: robl.sala25@gmail.com
+### 📞 Contact  
 
+💼 **LinkedIn:(https://www.linkedin.com/in/robert-salazar-630250360)  
+
+📧 **Email:** robl.sala25@gmail.com  
