@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <!-- Estilo base para el diálogo -->
+        <style name="DialogAnimation">
+            <item name="android:windowEnterAnimation">@anim/dialog_scale</item>
+            <item name="android:windowExitAnimation">@anim/dialog_scale_out</item>
+        </style>
+
+
+    <style name="CustomDatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/textColorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:background">@color/dialogBackground</item>
+    </style>
+
+    <style name="CustomTimePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:backgroundTint">@color/dialogBackground</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+
+    </style>
+
+
+    <color name="colorAccent">#D5B30E</color>
+    <color name="textColorPrimary">#D5B30E</color>
+    <color name="dialogBackground">#2f2f2f</color>
+
+</resources>
