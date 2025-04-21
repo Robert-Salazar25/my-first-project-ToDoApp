@@ -3,8 +3,6 @@ package com.example.todoapp.presentation.ui.viewModel
 import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -15,7 +13,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.todoapp.presentation.ui.receivers.TaskNotificationReceiver
 import com.example.todoapp.domain.repository.TaskRepository
 import com.example.todoapp.domain.model.TaskEntity
-import com.example.todoapp.presentation.ui.widget.TaskWidget
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import java.util.Calendar
