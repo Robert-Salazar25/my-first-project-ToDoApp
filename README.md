@@ -50,6 +50,7 @@ Una aplicación de productividad con recordatorios inteligentes, notificaciones 
 ¿Encontraste un bug o tienes una mejora? ¡Abre un issue o envía un PR!
 
 📞 Contacto
+
 💼 LinkedIn: https://www.linkedin.com/in/robert-salazar-630250360?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app
 
 📧 Email: robl.sala25@gmail.com
