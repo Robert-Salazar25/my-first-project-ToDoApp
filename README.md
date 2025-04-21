@@ -4,6 +4,7 @@ Desarrollador: [Robert Salazar]
 Una aplicación de productividad con recordatorios inteligentes, notificaciones programadas y gestión de tareas recurrente, diseñada con arquitectura MVVM y buenas prácticas de desarrollo.
 
 🚀 Características Principales
+
 ✔ Notificaciones inteligentes basadas en días/horas específicos
 
 ✔ Selección flexible de días recurrentes (Lun-Vie, días alternos, etc.)
