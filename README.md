@@ -56,4 +56,5 @@ Found a bug or have an improvement? Open an issue or submit a PR!
 
 💼 **LinkedIn:**(https://www.linkedin.com/in/robert-salazar-630250360)  
 
-📧 **Email:** robl.sala25@gmail.com  
+📧 **Email:** robl.sala25@gmail.com
+
