@@ -1,84 +1,47 @@
-🛍️ Tienda Virtual Kotlin - Sistema de Gestión
+# Junior Developer: [Robert Salazar] 📱 Platform: Android (Kotlin) | ⏳ Status: Beta
 
-Junior Developer: Robert Salazar
+A productivity app with smart reminders, scheduled notifications, and recurring task management, designed with MVVM architecture and development best practices.
 
-📱 Platform: Kotlin | ⏳ Status: Production Ready
+## 🚀 Key Features
+✔ Smart notifications based on specific days/times
 
-Un sistema completo de gestión de tienda virtual con control de inventario, procesamiento de pedidos y validaciones robustas, diseñado con principios SOLID y mejores prácticas de desarrollo.
+✔ Flexible recurring day selection (Mon-Fri, alternate days, etc.)
 
-🚀 Características Principales
+✔ Multi-select mode for batch operations
 
-✔ Gestión inteligente de inventario - Control de stock en tiempo real
+✔ Widget integration for quick access from the home screen
 
-✔ Sistema de pedidos completo - Validaciones y cálculos automáticos
+✔ Data persistence with Room Database
 
-✔ Manejo elegante de errores - Productos no encontrados, stock insuficiente
+✔ Modern UI with Material Design 3
 
-✔ Arquitectura escalable - Separación clara de responsabilidades
+## 🛠 Key Technologies
+- Language: Kotlin
+- Architecture: MVVM + Clean Architecture
+- Database: Room + Flow
+- Notifications: AlarmManager + BroadcastReceiver
+- Dependency Injection: Manual (no frameworks)
+- Widgets: AppWidgetProvider + RemoteViews
+## 🎯 Why This Project Stands Out in My Portfolio
+### Advanced Techniques:
 
-✔ API fluida y expresiva - Fácil integración y uso intuitivo
+- Precise alarm scheduling with AlarmManager
+- Interactive widget with real-time updates
+- Repository pattern for data abstraction
+### Best Practices:
 
-🛠 Stack Tecnológico
+- Modularized and testable code
+- Proper permission handling (Android 13+)
+- Battery optimization (efficient alarms)
+## 📌 How This Project Demonstrates My Skills
+- Technical Skill: Advanced use of Android components (Room, AlarmManager, BroadcastReceiver).
+- UX/UI: Intuitive design following Material Design.
+- Problem-Solving: Implementation of exact notifications without battery drain.
+- Documentation: Well-commented code and professional README.
+## 📌 How to Contribute
+Found a bug or have an improvement? Open an issue or submit a PR!
 
-- Categoría	Tecnologías
-- Lenguaje	Kotlin
-- Arquitectura	Programación Orientada a Objetos + SOLID
-- Validaciones	require() blocks + manejo defensivo
-- Estructuras	MutableList + funciones de extensión
-- Formatos	String templates + number formatting
-  
-🎯 Valor Técnico del Proyecto
-
-5 Puntos Clave que Demuestran Mi Enfoque:
-
-- 🔒 Validaciones Robusta
-require() e init blocks que garantizan integridad de datos en todo momento
-
-- 🏗️ Arquitectura SOLID
-Separación clara de responsabilidades entre entidades y componentes
-
-- 🛡️ Código Defensivo
-Manejo proactivo de edge cases (stock, productos no encontrados)
-
-- 📐 Inmutabilidad Estratégica
-Uso de val para datos que no deben mutar, asegurando consistencia
-
-- 🎯 API Expresiva
-Design fluido con funciones intuitivas como buscarYAgregar()
-
-
-📊 Demostración de Habilidades
-
-- Habilidad Técnica
-Dominio de Kotlin y POO con implementación de lógica de negocio compleja
-
-Manejo de estado controlado y efectos secundarios gestionados adecuadamente
-
-Cálculos financieros precisos con formateo profesional de valores
-
-- Pensamiento Crítico
-APIs intuitivas que resuelven problemas reales de forma elegante
-
-Anticipación de casos edge con manejo proactivo de escenarios problemáticos
-
-- Calidad de Código
-Código auto-documentado y fácil de mantener
-
-Estructura preparada para testing y extensibilidad futura
-
-👨‍💻 Sobre el Desarrollador
-
-Robert Salazar - Junior Developer apasionado con enfoque meticuloso en escribir código limpio, mantenible y bien estructurado. Comprometido con el desarrollo de software de calidad y el aprendizaje continuo.
-
-Mi filosofía: Código limpio sobre código clever, validaciones robustas desde el inicio, y arquitectura que escala.
-
-📞 Conectemos
-
-💼 LinkedIn: Robert Salazar
+## 📞 Contact
+💼 LinkedIn:(https://www.linkedin.com/in/robert-salazar-630250360)
 
 📧 Email: robl.sala25@gmail.com
-
-¿Buscas un Junior Developer con atención al detalle y pasión por el código limpio? ¡Hablemos!
-
-Demuestro que priorizo código limpio y arquitectura sólida, incluso en proyectos de aprendizaje.
-
