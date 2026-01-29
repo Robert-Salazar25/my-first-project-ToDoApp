@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="card_view_size">120dp</dimen>
-    <dimen name="margin_middle">24dp</dimen>
-    <dimen name="margin_20dp">20dp</dimen>
-    <dimen name="margin_50dp">50dp</dimen>
-    <dimen name="margin_15dp">15dp</dimen>
-    <dimen name="margin_10dp">10dp</dimen>
-</resources>
