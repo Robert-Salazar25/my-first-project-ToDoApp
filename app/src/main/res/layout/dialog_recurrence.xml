@@ -1,0 +1,138 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/card_background"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona los días"
+        android:textSize="21sp"
+        android:textColor="@color/color_stroke_card"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <CheckBox
+            android:id="@+id/cbLunes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=" Lun"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbMartes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=" Mar"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbMiercoles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Mie"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbJueves"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Jue"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <CheckBox
+            android:id="@+id/cbViernes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Vie"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbSabado"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Sab"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbDomingo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Dom"
+            android:textColor="@color/color_stroke_card"
+            android:button="@drawable/radio_buton_selector"
+
+            />
+
+        <CheckBox
+            android:id="@+id/cbRecurrente"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="  Recurrente"
+            android:textSize="10dp"
+            android:textColor="@color/white"
+            android:button="@drawable/radio_buton_selector"/>
+
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnConfirmDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/color_stroke_card"
+        android:backgroundTint="@color/card_background"/>
+</LinearLayout>

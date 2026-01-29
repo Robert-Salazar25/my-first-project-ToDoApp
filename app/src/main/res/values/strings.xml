@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TaskList</string>
+    <string name="text_task">Tarea a realizar</string>
+    <string name="fb_description">Add Task</string>
+    <string name="iv_description">ImageView description</string>
+    <string name="add_task">Agregar Tarea</string>
+    <string name="parameters_empty">Por favor, completa todos los campos</string>
+    <string name="add_task_secces">Tarea agregada</string>
+    <string name="delete_icon_description">borrar\n</string>
+    <string name="delete_task">"Tarea Eliminada "</string>
+    <string name="add_task_edit_secces">"Tarea Editada "</string>
+    <string name="edit_task_secces">Tarea Actualizada</string>
+</resources>
