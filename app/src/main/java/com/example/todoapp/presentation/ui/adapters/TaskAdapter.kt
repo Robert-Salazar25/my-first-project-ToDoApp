@@ -9,60 +9,44 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todoapp.R
 import com.example.todoapp.databinding.ItemTaskBinding
-import com.example.todoapp.domain.model.TaskEntity
+import com.example.todoapp.domain.model.Task // <-- CAMBIADO
 import com.example.todoapp.presentation.ui.listener.onClickListener
 
-class TaskAdapter (private val listTask: MutableList<TaskEntity>, private val listener: onClickListener):
-    RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
+class TaskAdapter(
+    private val listTask: MutableList<Task>, // <-- CAMBIADO: Task en vez de TaskEntity
+    private val listener: onClickListener
+) : RecyclerView.Adapter<TaskAdapter.ViewHolder>() {
 
-        private var taskSelected = mutableSetOf<TaskEntity>()
-        private var isSelectionMode = false
-
-        lateinit var context: Context
-
-        private var cardBackground = Color.parseColor("#2f2f2f")
+    private var taskSelected = mutableSetOf<Task>() // <-- CAMBIADO
+    private var isSelectionMode = false
+    private lateinit var context: Context
+    private var cardBackground = Color.parseColor("#2f2f2f")
     private var selectedCardBackground = Color.parseColor("#D5B30E")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-
         val view = LayoutInflater.from(context).inflate(R.layout.item_task, parent, false)
-
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val task = listTask[position]
 
-        val task = listTask.get(position)
-
-        with(holder){
+        with(holder) {
             setListener(task)
-            binding.tvTarea.text = task.tarea
-            binding.tvHora.text = task.hora
-            binding.tvDias.text = formatDias(task.diasSemana, task.esRecurrente)
+            binding.tvTarea.text = task.title // <-- CAMBIADO: .title en vez de .tarea
+            binding.tvHora.text = task.time // <-- CAMBIADO: .time en vez de .hora
+            binding.tvDias.text = formatDias(task.weekDays, task.isRecurrent) // <-- CAMBIADO
 
-            binding.root.isSelected = taskSelected.contains(task)
-            binding.root.isActivated = taskSelected.contains(task)
-
-           val isSelected = taskSelected.contains(task)
-
+            val isSelected = taskSelected.contains(task)
             binding.root.setCardBackgroundColor(
                 if (isSelected) selectedCardBackground else cardBackground
             )
-
             binding.btnEdit.backgroundTintList = ColorStateList.valueOf(
                 if (isSelected) selectedCardBackground else cardBackground
             )
-
             binding.root.cardElevation = if (isSelected) 8f else 2f
-
-
-
-
-
-
         }
-
     }
 
     private fun formatDias(diasSemana: String, esRecurrente: Boolean): String {
@@ -70,35 +54,32 @@ class TaskAdapter (private val listTask: MutableList<TaskEntity>, private val li
 
         val dias = diasSemana.split(",").filter { it.isNotEmpty() }
 
-        return when{
-            dias.size == 7 -> if (esRecurrente) "Todos los dias" else "Unica vez: Todos los dias"
+        return when {
+            dias.size == 7 -> if (esRecurrente) "Todos los dias"
+            else "Unica vez: Todos los dias"
             dias.size > 3 -> {
-                val textoDias = dias.joinToString (", "){abreviateDia(it)}
-                if (esRecurrente) "Varios dias" else "Unica vez: $textoDias "
+                val textoDias = dias.joinToString(", ") { abreviateDia(it) }
+                if (esRecurrente) "Varios dias" else "Unica vez: $textoDias"
             }
             else -> {
-                val textoDias = dias.joinToString (", "){abreviateDialarga(it)}
-                if (esRecurrente) "$textoDias" else "Unica vez: $textoDias"
+                val textoDias = dias.joinToString(", ") { abreviateDialarga(it) }
+                if (esRecurrente) textoDias else "Unica vez: $textoDias"
             }
         }
-
     }
 
-    private fun  abreviateDia(dia:String): String = when (dia){
-
-            "LUN" -> "L"
-            "MAR" -> "M"
-            "MIE" -> "Mi"
-            "JUE" -> "J"
-            "VIE" -> "V"
-            "SAB" -> "S"
-            "DOM" -> "D"
-            else -> dia
-
+    private fun abreviateDia(dia: String): String = when (dia) {
+        "LUN" -> "L"
+        "MAR" -> "M"
+        "MIE" -> "Mi"
+        "JUE" -> "J"
+        "VIE" -> "V"
+        "SAB" -> "S"
+        "DOM" -> "D"
+        else -> dia
     }
 
-    private fun  abreviateDialarga(dia:String): String = when (dia){
-
+    private fun abreviateDialarga(dia: String): String = when (dia) {
         "LUN" -> "Lun"
         "MAR" -> "Mar"
         "MIE" -> "Mie"
@@ -107,70 +88,60 @@ class TaskAdapter (private val listTask: MutableList<TaskEntity>, private val li
         "SAB" -> "Sab"
         "DOM" -> "Dom"
         else -> dia
-
     }
-
 
     override fun getItemCount(): Int = listTask.size
 
-    fun update(task: List<TaskEntity>) {
+    fun update(tasks: List<Task>) { // <-- CAMBIADO
         listTask.clear()
-        listTask.addAll(task)
+        listTask.addAll(tasks)
         notifyDataSetChanged()
     }
 
-    fun getSelectedTasks(): Set<TaskEntity> = taskSelected
+    fun getSelectedTasks(): Set<Task> = taskSelected // <-- CAMBIADO
+    fun isInSelectionMode(): Boolean = isSelectionMode
 
-    fun isInSelectionMode (): Boolean = isSelectionMode
-
-    fun clearSelection(){
+    fun clearSelection() {
         taskSelected.clear()
         isSelectionMode = false
         notifyDataSetChanged()
     }
 
-
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemTaskBinding.bind(view)
 
-        fun setListener(taskEntity: TaskEntity){
-
-                binding.root.setOnClickListener {
-                    if (isSelectionMode) {
-                        toggleSelection(taskEntity)
-                    } else  { listener.onClick(taskEntity)
-                    }
-                }
-
-            binding.root.setOnLongClickListener {
-                   if (!isSelectionMode){
-                       isSelectionMode = true
-                       toggleSelection(taskEntity)
-                       listener.onLongClick(taskEntity)
-                   }
-                true
-                }
-
-            binding.btnEdit.setOnClickListener {
-                if (!isSelectionMode){
-                    listener.onEditClick(taskEntity)
+        fun setListener(task: Task) { // <-- CAMBIADO
+            binding.root.setOnClickListener {
+                if (isSelectionMode) {
+                    toggleSelection(task)
+                } else {
+                    listener.onClick(task)
                 }
             }
 
+            binding.root.setOnLongClickListener {
+                if (!isSelectionMode) {
+                    isSelectionMode = true
+                    toggleSelection(task)
+                    listener.onLongClick(task)
+                }
+                true
+            }
+
+            binding.btnEdit.setOnClickListener {
+                if (!isSelectionMode) {
+                    listener.onEditClick(task)
+                }
+            }
         }
 
-        private fun toggleSelection(taskEntity: TaskEntity){
-            if (taskSelected.contains(taskEntity)){
-                taskSelected.remove(taskEntity)
-
-            }else{
-                taskSelected.add(taskEntity)
+        private fun toggleSelection(task: Task) { // <-- CAMBIADO
+            if (taskSelected.contains(task)) {
+                taskSelected.remove(task)
+            } else {
+                taskSelected.add(task)
             }
             notifyItemChanged(adapterPosition)
         }
-
     }
-
-
 }

@@ -1,4 +1,4 @@
-package com.example.todoapp.data.database
+package com.example.todoapp.data.local
 
 import android.content.Context
 import androidx.room.Database
@@ -6,8 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.todoapp.data.Dao.TaskDao
-import com.example.todoapp.domain.model.TaskEntity
+import com.example.todoapp.data.local.entity.TaskEntity
 
 @Database(entities = [TaskEntity::class], version = 3, exportSchema = false)
 abstract class TaskDatabase: RoomDatabase() {
